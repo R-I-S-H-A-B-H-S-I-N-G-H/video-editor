@@ -60,6 +60,16 @@ transitions = [
     (10, 2, (0, 0), (0, 0)),
 ]
 
+
+transitions2 = [
+    (0, 2, (0, 0), (0, 0)),
+    (2, 2, (0, 0), (0, 300)),
+    (4, 2, (0, 300), (500, 300)),
+    (6, 2, (500, 300), (500, 0)),
+    (8, 2, (500, 0), (0, 0)),
+    (10, 2, (0, 0), (0, 0)),
+]
+
 # Load overlay video and apply movement
 overlay_video = VideoFileClip("overlay.mp4")
 
@@ -68,10 +78,21 @@ overlay_video = resize_with_black_bars(overlay_video, (100, 100))
 
 overlay_video = overlay_video.set_position(lambda t: move_overlay(t, transitions))
 
+
+# v2
+
+# Load overlay video and apply movement
+overlay_video2 = VideoFileClip("overlay.mp4")
+
+# Resize while preserving aspect ratio (adds black bars if needed)
+overlay_video2 = resize_with_black_bars(overlay_video2, (100, 100))
+
+overlay_video2 = overlay_video2.set_position(lambda t: move_overlay(t, transitions2))
+
 background = ImageClip("background.jpg").set_duration(overlay_video.duration).resize((600, 400))
 
 # Create composite video with layers
-final_clip = CompositeVideoClip([background, overlay_video])
+final_clip = CompositeVideoClip([background, overlay_video, overlay_video2])
 
 # Export the final video
 final_clip.write_videofile("output.mp4", fps=30)
