@@ -26,6 +26,24 @@
 							"dur": 2,
 							"startPos": [500, 0],
 							"endPos": [500, 300]
+						},
+						{
+							"start": 4,
+							"dur": 2,
+							"startPos": [500, 300],
+							"endPos": [0, 300]
+						},
+						{
+							"start": 6,
+							"dur": 2,
+							"startPos": [0, 300],
+							"endPos": [0, 0]
+						},
+						{
+							"start": 8,
+							"dur": 2,
+							"startPos": [0, 0],
+							"endPos": [0, 0]
 						}
 					]
 				}
