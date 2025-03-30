@@ -1,0 +1,35 @@
+{
+	"output_video": "output.mp4",
+	"layers": [
+		{
+			"type": "image",
+			"path": "background.jpg",
+			"size": [600, 400],
+			"duration": 31
+		},
+		{
+			"type": "video",
+			"path": "overlay.mp4",
+			"size": [100, 100],
+			"transitions": [
+				{
+					"type": "position",
+					"keyFrames": [
+						{
+							"start": 0,
+							"dur": 2,
+							"startPos": [0, 0],
+							"endPos": [500, 0]
+						},
+						{
+							"start": 2,
+							"dur": 2,
+							"startPos": [500, 0],
+							"endPos": [500, 300]
+						}
+					]
+				}
+			]
+		}
+	]
+}
