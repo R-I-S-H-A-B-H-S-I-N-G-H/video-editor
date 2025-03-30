@@ -75,14 +75,9 @@ def generateLayer(config):
         layerClip = None
         if file_type == "image":
             layerClip = ImageClip(path).resize(size).set_duration(duration)
-        elif file_type == "video":
+        if file_type == "video":
             layerClip = VideoFileClip(path)
             layerClip = layerClip.resize(size)
-            if duration:
-                layerClip = layerClip.set_duration(duration)
-
-        # Ensure the clip has an explicit start time of 0
-        layerClip = layerClip.set_start(0)
 
         for transitionConf in transitionsConf:
             transition_type = transitionConf.get("type")
@@ -100,7 +95,9 @@ def generateLayer(config):
                 if transitions_list:
                     layerClip = layerClip.set_position(lambda t: move_overlay(t, transitions_list))
             
+            
             if transition_type == "scale":
+                print('SCALE')
                 scale_transitions = []
                 for keyFrameConf in keyFramesConf:
                     start_time = keyFrameConf.get("start", 0)
@@ -110,18 +107,14 @@ def generateLayer(config):
                     scale_transitions.append((start_time, duration, start_scale, end_scale))
 
                 if scale_transitions:
+                    print("scale transitions :: ", scale_transitions)
                     layerClip = layerClip.resize(lambda t: scale_overlay(t, scale_transitions))
 
         if layerClip:
-            # Ensure the layer is added with proper opacity
-            layers.append(layerClip.set_opacity(1))
+            layers.append(layerClip)
 
-    # Create the composite with explicit size based on the first layer (background)
-    background_size = layers[0].size
-    final_clip = CompositeVideoClip(layers, size=background_size)
-    
-    # Write the video file
-    final_clip.write_videofile(output_video_path, fps=30, codec='libx264', audio=False)
+    final_clip = CompositeVideoClip(layers)
+    final_clip.write_videofile(output_video_path, fps=30)
 
 
 def readJson(path):
