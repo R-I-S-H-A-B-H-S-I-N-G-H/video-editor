@@ -10,6 +10,44 @@
 		{
 			"type": "video",
 			"path": "overlay.mp4",
+			"duration": 31,
+			"size": [100, 100],
+			"transitions": [
+				{
+					"type": "position",
+					"keyFrames": [
+						{
+							"start": 0,
+							"dur": 2,
+							"startPos": [0, 0],
+							"endPos": [0, 300]
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "image",
+			"path": "background.jpg",
+			"duration": 31,
+			"size": [100, 100],
+			"transitions": [
+				{
+					"type": "position",
+					"keyFrames": [
+						{
+							"start": 0,
+							"dur": 2,
+							"startPos": [0, 0],
+							"endPos": [300, 200]
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "video",
+			"path": "overlay.mp4",
 			"size": [100, 100],
 			"transitions": [
 				{
