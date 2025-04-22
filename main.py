@@ -46,6 +46,17 @@ def scale_overlay(t, scale_transitions):
             return scale
     return scale_transitions[-1][2]  # Return last end scale if no transition applies
 
+def resize_overlay(t, resize_transitions):
+    for start_time, duration, start_size, end_size in resize_transitions:
+        if start_time <= t < start_time + duration:
+            progress = (t - start_time) / duration
+            progress = 0.5 * (1 - np.cos(progress * np.pi))  # Smooth easing
+
+            w = start_size[0] + (end_size[0] - start_size[0]) * progress
+            h = start_size[1] + (end_size[1] - start_size[1]) * progress
+            return (w, h)
+    return resize_transitions[-1][2]  # Last known size
+
 # Define movement function supporting multiple transitions
 def move_overlay(t, transitions):
     for start_time, transition_duration, start_pos, end_pos in transitions:
@@ -98,17 +109,16 @@ def generateLayer(config):
             
             if transition_type == "scale":
                 print('SCALE')
-                scale_transitions = []
+                resize_transitions = []
                 for keyFrameConf in keyFramesConf:
                     start_time = keyFrameConf.get("start", 0)
                     duration = keyFrameConf.get("dur", 1)
-                    start_scale = keyFrameConf.get("startScale", 1.0)
-                    end_scale = keyFrameConf.get("endScale", 1.0)
-                    scale_transitions.append((start_time, duration, start_scale, end_scale))
+                    start_size = keyFrameConf.get("startSize")
+                    end_size = keyFrameConf.get("endSize")
+                    resize_transitions.append((start_time, duration, start_size, end_size))
 
-                if scale_transitions:
-                    print("scale transitions :: ", scale_transitions)
-                    layerClip = layerClip.resize(lambda t, s_trans = scale_transitions: scale_overlay(t, s_trans))
+                if resize_transitions:
+                    layerClip = layerClip.resize(lambda t, r_trans=resize_transitions: resize_overlay(t, r_trans))
 
         if layerClip:
             layers.append(layerClip)
