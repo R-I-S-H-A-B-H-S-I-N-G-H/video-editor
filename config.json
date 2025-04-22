@@ -11,16 +11,39 @@
 			"type": "video",
 			"path": "overlay.mp4",
 			"duration": 31,
-			"size": [100, 100],
+			"size": [600, 400],
 			"transitions": [
 				{
 					"type": "position",
 					"keyFrames": [
 						{
 							"start": 0,
-							"dur": 2,
+							"dur": 1,
 							"startPos": [0, 0],
-							"endPos": [0, 300]
+							"endPos": [300, 0]
+						},
+						{
+							"start": 1,
+							"dur": 30,
+							"startPos": [300, 0],
+							"endPos": [300, 0]
+						}
+					]
+				},
+				{
+					"type": "scale",
+					"keyFrames": [
+						{
+							"start": 0,
+							"dur": 2,
+							"startScale": 1,
+							"endScale": 0.5
+						},
+						{
+							"start": 2,
+							"dur": 30,
+							"startScale": 0.5,
+							"endScale": 0.5
 						}
 					]
 				}
