@@ -93,7 +93,7 @@ def generateLayer(config):
                     transitions_list.append((start_time, duration, start_pos, end_pos))
 
                 if transitions_list:
-                    layerClip = layerClip.set_position(lambda t: move_overlay(t, transitions_list))
+                    layerClip = layerClip.set_position(lambda t, p_trans = transitions_list: move_overlay(t, p_trans))
             
             
             if transition_type == "scale":
@@ -108,7 +108,7 @@ def generateLayer(config):
 
                 if scale_transitions:
                     print("scale transitions :: ", scale_transitions)
-                    layerClip = layerClip.resize(lambda t: scale_overlay(t, scale_transitions))
+                    layerClip = layerClip.resize(lambda t, s_trans = scale_transitions: scale_overlay(t, s_trans))
 
         if layerClip:
             layers.append(layerClip)
