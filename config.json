@@ -35,15 +35,15 @@
 					"keyFrames": [
 						{
 							"start": 0,
-							"dur": 2,
-							"startScale": 1,
-							"endScale": 0.5
+							"dur": 5,
+							"startSize": [300, 300],
+							"endSize": [600, 200]
 						},
 						{
-							"start": 2,
-							"dur": 30,
-							"startScale": 0.5,
-							"endScale": 0.5
+							"start": 5,
+							"dur": 5,
+							"startSize": [600, 200],
+							"endSize": [300, 300]
 						}
 					]
 				}
