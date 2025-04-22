@@ -18,12 +18,18 @@
 					"keyFrames": [
 						{
 							"start": 0,
+							"dur": 5,
+							"startPos": [0, 0],
+							"endPos": [0, 0]
+						},
+						{
+							"start": 5,
 							"dur": 1,
 							"startPos": [0, 0],
 							"endPos": [300, 0]
 						},
 						{
-							"start": 1,
+							"start": 6,
 							"dur": 30,
 							"startPos": [300, 0],
 							"endPos": [300, 0]
@@ -36,14 +42,14 @@
 						{
 							"start": 0,
 							"dur": 5,
-							"startSize": [300, 300],
-							"endSize": [600, 200]
+							"startSize": [600, 400],
+							"endSize": [300, 200]
 						},
 						{
 							"start": 5,
-							"dur": 5,
-							"startSize": [600, 200],
-							"endSize": [300, 300]
+							"dur": 30,
+							"startSize": [300, 200],
+							"endSize": [300, 200]
 						}
 					]
 				}
